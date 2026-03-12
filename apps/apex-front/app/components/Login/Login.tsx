@@ -14,7 +14,7 @@ export default function LoginPage() {
 
     const userName = formData.get("username") as string;
     const password = formData.get("password") as string;
-    console.log(userName, password);
+
     try {
       await login(userName, password);
       navigate("/");

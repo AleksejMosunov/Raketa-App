@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router';
-import { useRaceSocket } from '~/src/components/hooks/useRaceSocket';
+import { useRaceSocket } from '~/hooks/useRaceSocket';
 import RaceTable from '~/src/components/RaceTable/RaceTable';
 import { useTrackStore } from '~/src/store/useTrackStore';
 

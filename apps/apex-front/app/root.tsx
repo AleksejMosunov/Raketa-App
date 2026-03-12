@@ -9,7 +9,7 @@ import {
 
 import type { Route } from "./+types/root";
 import "./app.css";
-import Footer from './src/components/footer/Footer';
+import Footer from './footer/Footer';
 import Header from './src/components/header/Header';
 import { useEffect } from 'react';
 import { useAuthStore } from './src/store/useAuthStore';
