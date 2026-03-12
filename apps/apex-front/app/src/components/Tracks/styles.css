@@ -1,0 +1,33 @@
+.track-card{
+  max-width: 300px;
+  max-height: 400px;
+  background-color: whitesmoke;
+  color: black;
+  padding: 1rem;
+  border-radius: 10px;
+    display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  gap: 1rem;
+}
+
+
+.track-list{
+
+}
+
+.track-card-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  gap: 1rem;
+}
+
+.track-image {
+  width: 100%;
+  height: auto;
+
+}

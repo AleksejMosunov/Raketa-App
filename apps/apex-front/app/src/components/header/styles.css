@@ -1,0 +1,19 @@
+.header{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 3rem;
+}
+
+.logo{
+  font-size: 56px;
+  font-weight: 800;
+}
+
+.nav{
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}

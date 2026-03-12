@@ -1,0 +1,34 @@
+:root {
+  font-family: "Inter", sans-serif;
+  color: white;
+  line-height: 16px;
+  font-weight: 500;
+ color: #FFEDED;
+  background-color: #1A0A12;
+    font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.page{
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.content{
+  flex: 1;
+  padding: 3rem;
+}
+
+a{
+  text-decoration: none;
+  color: inherit;
+}
+
