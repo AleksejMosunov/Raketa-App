@@ -9,8 +9,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev:front": "npm run dev --workspace=frontend",
-    "dev:back": "npm run start:dev --workspace=backend"
+    "dev": "npm run dev:back & npm run dev:front",
+    "dev:front": "npm run dev --workspace=apex-front",
+    "dev:back": "npm run start:dev --workspace=apex-back"
   },
   "keywords": [],
   "author": "",

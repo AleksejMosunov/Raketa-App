@@ -1,4 +1,4 @@
-import { useFetchTracks } from '../../../hooks/useFetchTracks';
+import { useFetchTracks } from '~/hooks/useFetchTracks';
 import { useTrackStore } from '~/src/store/useTrackStore';
 import TrackCard from './TrackCard';
 

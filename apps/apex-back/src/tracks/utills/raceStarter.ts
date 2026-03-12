@@ -69,6 +69,9 @@ export function startRace(
     ws.on('open', () => console.log(`✅ WS connected to ${track.name}`));
 
     ws.on('message', (data: WebSocket.RawData) => {
+      // The race may be stopped while WS messages are still in flight.
+      if (!activeRaces[trackId]) return;
+
       let messageString: string;
       if (data instanceof Buffer) {
         messageString = data.toString();
@@ -88,7 +91,10 @@ export function startRace(
         if (line.startsWith('dyn1|countdown|')) {
           const parts = line.split('|');
           const ms = parseInt(parts[2], 10);
-          activeRaces[trackId].countdown = ms;
+          countdown = ms;
+          if (activeRaces[trackId]) {
+            activeRaces[trackId].countdown = ms;
+          }
           return;
         }
 
@@ -154,10 +160,10 @@ export function startRace(
         }
       });
 
-      if (raceGateway && trackId) {
+      if (raceGateway && trackId && activeRaces[trackId]) {
         raceGateway.broadcastRaceUpdate(trackId, {
           trackName: track.name,
-          countdown: activeRaces[trackId]?.countdown,
+          countdown: activeRaces[trackId].countdown ?? countdown,
           raceData,
           updatedAt: new Date().toISOString(),
         });

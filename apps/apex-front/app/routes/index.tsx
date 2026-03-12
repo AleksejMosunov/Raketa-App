@@ -1,5 +1,5 @@
 
-import Tracks from '~/src/components/Tracks/Tracks';
+import Tracks from '~/components/Tracks/Tracks';
 
 export default function Home() {
   return (

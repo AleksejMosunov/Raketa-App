@@ -45,7 +45,7 @@ export default function TrackCard({ track }: TrackProps) {
         <h3>{track.name}</h3>
         <img src={track.imgUrl} alt={track.name} className="track-image" />
       </Link>
-      <a href={`${track.officialTiming}`}>Official Timing</a>
+      <a href={`${track.officialTiming}`} target="_blank" rel="noopener noreferrer">Official Timing</a>
       <div
         style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '1rem' }}
       >
