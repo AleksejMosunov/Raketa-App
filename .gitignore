@@ -1,16 +1,27 @@
-node_modules
-.env
-dist
-build
-coverage
+# Node modules
+node_modules/
+
+# Build output
+dist/
+build/
+
+# Logs
 logs
 *.log
-*.tmp
-*.bak
+
+# Coverage reports
+coverage/
+
+# Env files
+.env
+apps/*/.env*
+.env.local
+.env.*.local
+
+# OS / IDE
 .DS_Store
-.idea
-.vscode
+.idea/
+.vscode/
 *.swp
 *.swo
 *.swn
-
