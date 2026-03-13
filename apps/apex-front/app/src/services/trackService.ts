@@ -1,11 +1,16 @@
 import type { Track } from "../model/Track";
 
+const API_URL =
+  import.meta.env.VITE_API_URL?.replace(/\/$/, "") || "http://localhost:3000";
+
+type TrackPayload = Omit<Track, "_id">;
+
 export class TrackService {
   constructor() {}
 
   public async fetchTracks(): Promise<Track[]> {
     try {
-      const response = await fetch("http://localhost:3000/tracks");
+      const response = await fetch(`${API_URL}/tracks`);
       if (!response.ok) {
         throw new Error("Failed to fetch tracks");
       }
@@ -17,57 +22,60 @@ export class TrackService {
     }
   }
 
-  public async fetchTrackByName(name: string): Promise<Track> {
+  public async fetchTrackById(id: string): Promise<Track> {
     try {
-      const response = await fetch(`/api/tracks/${name}`);
+      const response = await fetch(`${API_URL}/tracks/${id}`);
       if (!response.ok) {
-        throw new Error(`Failed to fetch track with name: ${name}`);
+        throw new Error(`Failed to fetch track with id: ${id}`);
       }
       const data: Track = await response.json();
       return data;
     } catch (error) {
-      console.error(`Error fetching track with name ${name}:`, error);
+      console.error(`Error fetching track with id ${id}:`, error);
       throw error;
     }
   }
 
-  public async updateTrack(track: Track): Promise<Track> {
+  public async updateTrack(
+    id: string,
+    track: Partial<TrackPayload>,
+  ): Promise<Track> {
     try {
-      const response = await fetch(`/api/tracks/${track.name}`, {
-        method: "PUT",
+      const response = await fetch(`${API_URL}/tracks/${id}`, {
+        method: "PATCH",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(track),
       });
       if (!response.ok) {
-        throw new Error(`Failed to update track with name: ${track.name}`);
+        throw new Error(`Failed to update track with id: ${id}`);
       }
       const data: Track = await response.json();
       return data;
     } catch (error) {
-      console.error(`Error updating track with name ${track.name}:`, error);
+      console.error(`Error updating track with id ${id}:`, error);
       throw error;
     }
   }
 
-  public async deleteTrack(name: string): Promise<void> {
+  public async deleteTrack(id: string): Promise<void> {
     try {
-      const response = await fetch(`/api/tracks/${name}`, {
+      const response = await fetch(`${API_URL}/tracks/${id}`, {
         method: "DELETE",
       });
       if (!response.ok) {
-        throw new Error(`Failed to delete track with name: ${name}`);
+        throw new Error(`Failed to delete track with id: ${id}`);
       }
     } catch (error) {
-      console.error(`Error deleting track with name ${name}:`, error);
+      console.error(`Error deleting track with id ${id}:`, error);
       throw error;
     }
   }
 
-  public async createTrack(track: Track): Promise<Track> {
+  public async createTrack(track: TrackPayload): Promise<Track> {
     try {
-      const response = await fetch("/api/tracks", {
+      const response = await fetch(`${API_URL}/tracks`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

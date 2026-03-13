@@ -10,13 +10,19 @@ export default function Tracks() {
 
   useFetchTracks(); // подгружаем данные при монтировании
 
-  if (isLoading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error}</p>;
+  if (isLoading) return <p className="tracks-state">Loading tracks...</p>;
+  if (error) return <p className="tracks-state error">Error: {error}</p>;
   return (
-    <div className="track-list">
-      {tracks.map((track) => (
-        <TrackCard key={track.name} track={track} />
-      ))}
-    </div>
+    <section className="tracks-section">
+      <div className="tracks-head">
+        <p className="tracks-kicker">Tracks</p>
+        <h1>Choose Race Arena</h1>
+      </div>
+      <div className="track-list">
+        {tracks.map((track) => (
+          <TrackCard key={track.name} track={track} />
+        ))}
+      </div>
+    </section>
   );
 }

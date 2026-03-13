@@ -1,36 +1,115 @@
-.track-card{
-  max-width: 300px;
-  max-height: 400px;
-  background-color: whitesmoke;
-  color: black;
-  padding: 1rem;
-  border-radius: 10px;
-    display: flex;
+.tracks-section {
+  display: flex;
   flex-direction: column;
-  align-items: center;
-  text-decoration: none;
+  gap: 1.1rem;
+}
+
+.tracks-head {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.tracks-kicker {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #9cefe4;
+  font-size: 0.76rem;
+  font-weight: 700;
+}
+
+.tracks-head h1 {
+  margin: 0;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: clamp(1.25rem, 2.3vw, 1.9rem);
+}
+
+.tracks-state {
+  margin-top: 0.8rem;
+  color: rgba(229, 245, 255, 0.88);
+}
+
+.tracks-state.error {
+  color: #ffb3b3;
+}
+
+.track-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 1rem;
 }
 
-
-.track-list{
+.track-card {
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background:
+    radial-gradient(circle at 0% 0%, rgba(0, 209, 178, 0.16), transparent 30%),
+    linear-gradient(155deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.06));
+  color: #eff7ff;
+  padding: 0.9rem;
   display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-  justify-content: center;
+  flex-direction: column;
+  gap: 0.8rem;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.track-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(142, 246, 228, 0.5);
+  box-shadow: 0 16px 28px rgba(0, 0, 0, 0.2);
 }
 
 .track-card-info {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-decoration: none;
+  gap: 0.55rem;
   color: inherit;
-  gap: 1rem;
+}
+
+.track-card-info h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
 }
 
 .track-image {
   width: 100%;
-  height: auto;
+  height: 178px;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+}
 
+.track-link {
+  width: fit-content;
+  color: #a4fff1;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-size: 0.88rem;
+}
+
+.track-state-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.track-state {
+  font-size: 0.86rem;
+  color: rgba(231, 245, 255, 0.85);
+}
+
+.stop-race-btn {
+  border: 1px solid rgba(255, 143, 143, 0.5);
+  background: rgba(255, 143, 143, 0.14);
+  color: #ffd0d0;
+  font-weight: 700;
+  border-radius: 10px;
+  padding: 0.28rem 0.6rem;
+  cursor: pointer;
+}
+
+.stop-race-btn:hover {
+  background: rgba(255, 143, 143, 0.2);
 }

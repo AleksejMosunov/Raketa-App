@@ -1,10 +1,12 @@
 import {
+  Navigate,
   isRouteErrorResponse,
   Links,
   Meta,
   Outlet,
   Scripts,
   ScrollRestoration,
+  useLocation,
 } from "react-router";
 
 import type { Route } from "./+types/root";
@@ -12,7 +14,7 @@ import "./app.css";
 import Footer from './footer/Footer';
 import Header from './header/Header';
 import { useEffect } from 'react';
-import { useAuthStore } from './src/store/useAuthStore';
+import { useAuthStore } from '~/src/store/useAuthStore';
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -23,7 +25,7 @@ export const links: Route.LinksFunction = () => [
   },
   {
     rel: "stylesheet",
-    href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap",
+    href: "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap",
   },
 ];
 
@@ -48,6 +50,41 @@ export function Layout({ children }: { children: React.ReactNode; }) {
 
 
 export default function App() {
+  const checkAuth = useAuthStore((state) => state.checkAuth);
+  const user = useAuthStore((state) => state.user);
+  const authLoading = useAuthStore((state) => state.loading);
+  const location = useLocation();
+  const isLoginRoute = location.pathname === '/login';
+
+  useEffect(() => {
+    checkAuth();
+  }, [checkAuth]);
+
+  if (authLoading) {
+    return (
+      <div className="page">
+        <main className='content'>Checking session...</main>
+      </div>
+    );
+  }
+
+  if (!user && !isLoginRoute) {
+    return <Navigate to="/login" replace />;
+  }
+
+  if (user && isLoginRoute) {
+    return <Navigate to="/" replace />;
+  }
+
+  if (!user && isLoginRoute) {
+    return (
+      <div className="page">
+        <main className='content'>
+          <Outlet />
+        </main>
+      </div>
+    );
+  }
 
   return (
     <div className="page">

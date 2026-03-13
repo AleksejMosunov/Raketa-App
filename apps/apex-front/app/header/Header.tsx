@@ -11,16 +11,26 @@ export default function Header() {
     logout();
   };
 
+  console.log(user);
+
   return (
-    <div className='header'>
-      <Link className="logo" to="/">Raketa</Link>
-      <nav className='nav'>
-        {isLoggedIn ? (
-          <button onClick={handleClick}>Logout</button>
-        ) : (
-          <Link to="/login">Login</Link>
+    <header className='header'>
+      <Link className="logo" to="/">Raketa-Apex</Link>
+      <div className="nav-container">
+        <nav className='nav'>
+          {user && <span className="user-pill">{user.userName}</span>}
+          {isLoggedIn ? (
+            <button className="auth-btn" onClick={handleClick}>Logout</button>
+          ) : (
+            <Link className="auth-btn ghost" to="/login">Login</Link>
+          )}
+        </nav>
+        {user?.role === 'admin' && (
+          <nav className='nav'>
+            <Link className="auth-btn ghost" to="/admin">Admin</Link>
+          </nav>
         )}
-      </nav>
-    </div>
+      </div>
+    </header>
   );
 }

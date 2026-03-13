@@ -45,16 +45,14 @@ export default function TrackCard({ track }: TrackProps) {
         <h3>{track.name}</h3>
         <img src={track.imgUrl} alt={track.name} className="track-image" />
       </Link>
-      <a href={`${track.officialTiming}`} target="_blank" rel="noopener noreferrer">Official Timing</a>
-      <div
-        style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '1rem' }}
-      >
-        <p>Race State: {track.openedWs ? "Started" : "Stopped"}</p>
+      <a className="track-link" href={`${track.officialTiming}`} target="_blank" rel="noopener noreferrer">Official Timing</a>
+      <div className="track-state-row">
+        <p className="track-state">Race State: {track.openedWs ? "Started" : "Stopped"}</p>
         {track.openedWs &&
           <button
-            style={{ color: 'red', border: 'none', background: 'none', cursor: 'pointer', fontWeight: 'bold', fontSize: '20px' }}
+            className="stop-race-btn"
             onClick={handleStopRace} disabled={!track.openedWs}>
-            X
+            Stop
           </button>
         }
       </div>

@@ -45,7 +45,11 @@ export async function getMe(token: string) {
   });
 
   if (!response.ok) {
-    throw new Error("Failed to fetch user info");
+    const error = new Error("Failed to fetch user info") as Error & {
+      status?: number;
+    };
+    error.status = response.status;
+    throw error;
   }
 
   return response.json();
